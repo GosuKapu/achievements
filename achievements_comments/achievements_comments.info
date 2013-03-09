@@ -1,0 +1,5 @@
+name = Comments
+description = "Adds typical comment-count achivements."
+dependencies[] = achievements
+package = Achievements
+core = 7.x

@@ -1,0 +1,5 @@
+name = User
+description = "Adds user info based achivements."
+dependencies[] = achievements
+package = Achievements
+core = 7.x

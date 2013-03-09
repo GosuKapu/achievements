@@ -1,0 +1,83 @@
+﻿<?php
+
+/**
+ * @file
+ * Implemented user info based achievements.
+ */
+
+
+function achievements_user_achievements_info() {
+ $achievements = array(
+  
+ 'user-info' => array(
+ 'title' => t('Użytkownik'),
+ 'achievements' => array(
+	  
+     'user-1year' => array(
+      'title'       => t('1 rok stażu'),
+      'description' => t("Nagroda za 1 rok stażu na Strefie.<br />
+						 <p class=\"achievement-quote\">\"Widzieliście to? Zadowolony klient! Powinniśmy go zabalsamować.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+	
+	  'user-2years' => array(
+      'title'       => t('2 rok stażu'),
+      'description' => t("Nagroda za 2 lata stażu na Strefie.<br />
+						 <p class=\"achievement-quote\">\"Ona tu pracuje od bitwy pod Grunwaldem.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+	
+	  'user-5years' => array(
+      'title'       => t('5 rok stażu'),
+      'description' => t("Nagroda za 5 lat stażu na Strefie.<br />
+						 <p class=\"achievement-quote\">\"Słuchaj druhu... Ja to pamiętam jak rołcze w becie miały 2 armora i kosztowały 1 supplaja.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+	
+	  'user-avatar' => array(
+      'title'       => t('Jestę modelę'),
+      'description' => t("Dodaj avatar do swojego profilu.<br />
+						 <p class=\"achievement-quote\">\"To nas tu o mało nie wykastrowały, a ty cycki będziesz sobie, cyganie, przyprawiał?\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+    
+    
+	
+  ),
+  ),
+  );
+
+  return $achievements;
+}
+
+
+
+
+/**
+ * IMPLEMENTACJE HAKÓW
+ */
+ 
+function achievements_user_user_login(&$edit,$account) {
+  
+  if (time() - $account->created >= 31536000) {
+    achievements_unlocked('user-1year', $account->uid);
+  }
+  
+  if (time() - $account->created >= 63072000) {
+    achievements_unlocked('user-2years', $account->uid);
+  }
+  
+   if (time() - $account->created >= 157680000) {
+    achievements_unlocked('user-5years', $account->uid);
+  }
+};
+
+function achievements_user_user_update(&$edit ,$account) {
+  if ($account->picture) {
+    achievements_unlocked('user-avatar', $account->uid);
+  }
+};

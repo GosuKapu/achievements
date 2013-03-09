@@ -1,0 +1,159 @@
+﻿<?php
+
+/**
+ * @file
+ * Implemented typical comment-count achievements.
+ */
+
+
+function achievements_comments_achievements_info() {
+ $achievements = array(
+  
+ 'comments-creation' => array(
+ 'title' => t('Komentarze i posty'),
+ 'achievements' => array(
+	  
+    'comment-count-1' => array(
+      'title'       => t('Byłem tu.'),
+      'description' => t("Napisz pierwszy komentarz lub post.<br />
+						 <p class=\"achievement-quote\">\"Witaj wśród rekieterów. Dobrze mieć Cię w naszych szeregach.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+    'comment-count-10' => array(
+      'title'       => t('Niech no ZERGnę...'),
+      'description' => t("Napisz 10 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Daj ten tom o Zergach nowemu... Niech rzuci na nie okiem.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+	'comment-count-25' => array(
+      'title'       => t('Kokodżambo i do przodu.'),
+      'description' => t("Napisz 25 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Grzegorz Brzęczyszczykiewicz, Chrząszczyżewoszyce powiat Łękołody.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+    'comment-count-50' => array(
+      'title'       => t('Nie jestem newfagiem!'),
+      'description' => t("Napisz 50 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Jesteś już wystarczająco długo z nami rekieterze. Czas, abyś nauczył się triforce'ować.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),	
+    'comment-count-100' => array(
+      'title'       => t('Boss Mode ON'),
+      'description' => t("Napisz 100 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Napisałem 100 komentarzy, więc wiem co to StarCraft dziffko.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),
+    'comment-count-250' => array(
+      'title'       => t('You talkin\' to me?'),
+      'description' => t("Napisz 250 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Co wam powiem, to Wam powiem, ale Wam powiem...\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),	
+    'comment-count-500' => array(
+      'title'       => t('Info od Boga'),
+      'description' => t("Napisz 500 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Wyznawcy Saremiego są doskonałymi szpiegami. Pokusiłbym się nawet o stwierdzenie - najlepszymi.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 10,
+    ),	
+    'comment-count-1000' => array(
+      'title'       => t('1000 komciów'),
+      'description' => t("Napisz 1000 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Mają rozmach skur*ysyny.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 20,
+    ),	
+    'comment-count-2000' => array(
+      'title'       => t('Posted 2000 comments!'),
+      'description' => t("Napisz 2000 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"To nie są niewolnicy! To wysokiej klasy fachowcy zatrudnieni na umowę o dzieło. I nawet dostają jeść! \"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 20,
+    ),	
+    'comment-count-5000' => array(
+      'title'       => t('Cool story \'brah'),
+      'description' => t("Napisz 5000 komentarzy i/lub postów na forum.<br />
+						 <p class=\"achievement-quote\">\"Wszystko co da się powiedzieć, da się powiedzieć prosto. A czego nie da się powiedzieć, o tym należy milczeć.\"</p>"),
+      'storage'     => 'comment-count',
+      'points'      => 50,
+    ),
+
+	'comment-night' => array(
+      'title'       => t('Nie śpię, bo odświeżam Strefę'),
+      'description' => t("Napisz posta między 3:00 a 5:00 rano.<br />
+						 <p class=\"achievement-quote\">\"Nie śpij, bo Cię okradną!\"</p>"),
+      'points'      => 10,
+    ),		
+	
+	'comment-midnight' => array(
+      'title'       => t('To już jutro?'),
+      'description' => t("Napisz komentarz lub post dokładnie o północy.<br />
+						 <p class=\"achievement-quote\">\"Która to godzina... Już tak późno? Wracam do kajuty, jutro czeka nas ciężki dzień...\"</p>"),
+      'points'      => 10,
+    ),	
+	
+	'comment-noon' => array(
+      'title'       => t('W samo południe'),
+      'description' => t("Napisz komentarz lub post dokładnie o 12:00.<br />
+						 <p class=\"achievement-quote\">\"Co dobry Pan dał, to Daltonowie przyszli i zabrali.\"</p>"),
+      'points'      => 10,
+    ),	
+
+	'comment-quickly' => array(
+      'title'       => t('60 sekund'),
+      'description' => t("Napisz odpowiedź w temacie lub komentarz do newsa w ciągu minuty po jego publikacji.<br />
+						 <p class=\"achievement-quote\">\"Jak się człowiek śpieszy, to się fiskus cieszy.\"</p>"),
+      'points'      => 10,
+    ),		
+	
+  ),
+  ),
+  );
+
+  return $achievements;
+}
+
+
+
+
+/**
+ * Implements hook_comment_insert().
+ */
+ 
+function achievements_comments_comment_insert($comment) {
+
+  $current_count = achievements_storage_get('comment-count', $comment->uid) + 1;
+  achievements_storage_set('comment-count', $current_count, $comment->uid);
+  
+  foreach (array(1,10,25,50,100,250,500,1000,2000,5000) as $count) {
+    if ($current_count == $count) {
+      achievements_unlocked('comment-count-' . $count, $comment->uid);
+    }
+  }
+  
+  
+  if ((format_date(REQUEST_TIME, 'custom', 'H:i') > '03:00') && (format_date(REQUEST_TIME, 'custom', 'H:i') < '05:00')) {
+    achievements_unlocked('comment-night', $comment->uid);
+  }
+  
+  if ((format_date(REQUEST_TIME, 'custom', 'H:i') > '00:00') && (format_date(REQUEST_TIME, 'custom', 'H:i') < '00:01')) {
+    achievements_unlocked('comment-midnight', $comment->uid);
+  }
+  
+  if ((format_date(REQUEST_TIME, 'custom', 'H:i') > '12:00') && (format_date(REQUEST_TIME, 'custom', 'H:i') < '12:01')) {
+    achievements_unlocked('comment-noon', $comment->uid);
+  }
+  
+  
+  { $node_id = $comment->nid;
+  $node = node_load($node_id);
+  if ($comment->created - $node->created < 60) { achievements_unlocked('comment-quickly', $comment->uid); }
+  }
+  
+}
